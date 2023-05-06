@@ -1,10 +1,8 @@
 <?php
 
     include 'components/header.php';
-    
-    include 'models/categories.php';
 
-    include 'models/products.php';
+    include 'components/menu-categories.php';
 
     $empty=true;
 ?>
@@ -12,15 +10,15 @@
     <?php
     if ($_GET['pageCat']) {
         $_GET['pageCat'] = intval($_GET['pageCat']);
-        foreach ($categories as $categorie):
-            if ($categorie['id']==$_GET['pageCat']) {
+        foreach ($categories as $category):
+            if ($category['id']==$_GET['pageCat']) {
                 ?>
                 <h1>
-                    <?=$categorie['name']?>
+                    <?=$category['name']?>
                 </h1>
                 <?php
-                foreach ($categorie['children'] as $child):?>
-                    --<a href="categories-page.php?page=<?=$child['id']?>"> <?= $child['name']?></a><br>
+                foreach ($category['children'] as $child):?>
+                    <h2><a href="categories-page.php?page=<?=intId($child['id'])?>"> <?= $child['name']?></a></h2> 
                 <?php
                 endforeach;
             }
@@ -28,11 +26,11 @@
     }
     if ($_GET['page']) {
         $_GET['page'] = intval($_GET['page']);
-        foreach ($categories as $categorie):
-            foreach ($categorie['children'] as $child):
+        foreach ($categories as $category):
+            foreach ($category['children'] as $child):
                 if ($child['id']==$_GET['page']) {
                     ?> 
-                        <h1><?= $categorie['name']?></h1>
+                        <h1><?= $category['name']?></h1>
                         <h2><?= $child['name']?></h2>
                     <?php
                 }
@@ -49,7 +47,7 @@
                         <p class="card-text"><?=$product['price']?> руб.</p>
                         <p class="card-text"><small class="text-body-secondary"><?=$product['description']?></small></p>
                         <button class="btn btn-success order">Заказать</button>
-                        <a href="product-page.php?product=<?=$product['id']?>" class="btn btn-success">Подробнее</a>
+                        <a href="product-page.php?product=<?=intId($product['id'])?>" class="btn btn-success">Подробнее</a>
                     </div>
                 </div>
                 <?php 

@@ -1,12 +1,12 @@
 <?php
-
-    include 'components/header.php';
-    
-    include 'models/categories.php';
-
-    include 'models/products.php';
-  
    
+    include 'components/header.php';
+
+    if($_GET['clear_cart']){
+        $_SESSION['cart']= array();
+        header('Location: '.$_SERVER['PHP_SELF']);
+        $_GET['clear_cart']= false; 
+    }
 ?>
 
 <div class="header">
@@ -14,15 +14,9 @@
     <h2>Копейки</h2>
 </div>
 
-<div class="catalog">
-    <? foreach ($categories as $categorie):?>
-        <a href="categories-page.php?pageCat=<?=$categorie['id']?>"> <?= $categorie['name']?></a><br>
-        <? if (isset($categorie['children']))
-        foreach ($categorie['children'] as $child):?>
-            --<a href="categories-page.php?page=<?=$child['id']?>"> <?= $child['name']?></a><br>
-        <?endforeach?>
-    <?endforeach?>
-</div>
+<?php 
+    include 'components/menu-categories.php';
+?>
 
 <div class="catalog">
     <? foreach ($products as $product):?>
@@ -33,7 +27,7 @@
                 <p class="card-text"><?=$product['price']?> руб.</p>
                 <p class="card-text"><small class="text-body-secondary"><?=$product['small_description']?></small></p>
                 <button class="btn btn-success order">Заказать</button>
-                <a href="product-page.php?product=<?=$product['id']?>" class="btn btn-success">Подробнее</a>
+                <a href="product-page.php?product=<?=intId($product['id'])?>" class="btn btn-success">Подробнее</a>
             </div>
         </div>
     <?endforeach?>

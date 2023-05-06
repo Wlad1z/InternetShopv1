@@ -113,3 +113,7 @@ footer{
     align-items: center;
     height: 70vh;
 }
+
+.clear_cart{
+    margin-top: 10px;
+}

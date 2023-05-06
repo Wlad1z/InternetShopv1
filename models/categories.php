@@ -34,11 +34,11 @@ function createArrayChildren($child){
 
 $categories = array();
 
-while ($categorieInfo = $categ->fetch()){
-    $categChildren = getCategChildren($categorieInfo['id']);
+while ($categoryInfo = $categ->fetch()){
+    $categChildren = getCategChildren($categoryInfo['id']);
     
     if ($categChildren)
-        $categorieInfo['children']=$categChildren;
+    $categoryInfo['children']=$categChildren;
 
-    $categories[]= $categorieInfo;
+    $categories[]=$categoryInfo;
 }

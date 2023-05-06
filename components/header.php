@@ -1,3 +1,16 @@
+<?php 
+    session_start();
+
+    if (!isset($_SESSION['cart'])){
+        $_SESSION['cart'] = array();
+    };
+ 
+    include 'models/categories.php';
+    include 'functions/intId.php';
+    include 'models/products.php';
+    $cartCntItems = count($_SESSION['cart']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,4 +44,5 @@
             </div>
         </div>
     </nav>
-    <div class="container">
+<div class="container">
+    

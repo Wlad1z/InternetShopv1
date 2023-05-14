@@ -1,7 +1,12 @@
 <?php
+$header = "Контакты";
 include 'components/header.php';
+
 ?>
-<h1 style="text-align:center">Контакты</h1>
+<div class="header">
+    <img src="static/img/logo.jpg" alt="">
+    <h2><?php echo $header?></h2>
+</div>
 <div class="contacts">
         
     <div class="contacts-body">

@@ -2,10 +2,10 @@
 
 class PdoConnect {
 
-    private const HOST = 'localhost';
-    private const DB = 'internetShop';
-    private const USER ='Admin';
-    private const PASS ='admin';
+    private $HOST;
+    private $DB;
+    private $USER;
+    private $PASS;
     private const CHARSET = 'utf8';
 
     protected static $_instance;
@@ -15,16 +15,22 @@ class PdoConnect {
     public $PDO;
 
     private function __construct(){
-        
-        $this->DSN = "mysql:host=". self::HOST . ";dbname=" . self::DB . ";charset=". self::CHARSET;
+        require_once "pdoconfig.php";
 
+        $this->HOST = $HOST;
+        $this->DB = $DB;
+        $this->USER = $USER;
+        $this->PASS = $PASS;
+
+        $this->DSN = "mysql:host=". $this->HOST . ";dbname=" . $this->DB . ";charset=". self::CHARSET;
+        
         $this->OPD = array(
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
             PDO::ATTR_EMULATE_PREPARES => false,
         );
 
-        $this->PDO = new PDO($this->DSN, self::USER, self::PASS, $this->OPD);
+        $this->PDO = new PDO($this->DSN, $this->USER, $this->PASS, $this->OPD);
     }
 
     public static function getInstance(){

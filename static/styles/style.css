@@ -2,16 +2,37 @@
     box-sizing: border-box;
 	min-height: 100vh;
 }
+.content{
+    display: flex;
+}
 
+.categories{
+    width: 100%;
+}
 
 nav{
     margin-bottom: 10px;
+    
 }
 .navbar{
     margin-right: 0;
 }
-.navbar-brand{
-    background-color: #b2c561 !important;
+.bg-body-tertiary{
+    background-color: #142418 !important;
+    
+}
+.nav-link{
+    color: white;
+}
+.nav-link:hover{
+    color: grey; 
+}
+.navbar-toggler{
+    background-color: white;
+}
+@media (min-width: 992px) {.navbar-expand-lg .navbar-collapse {
+    justify-content: space-around;
+    }
 }
 
 
@@ -36,7 +57,46 @@ footer{
 }
 .card{
     width: 70%;
-    margin: auto;
+}
+.product-buttons{
+    display: flex;
+    justify-content: space-between;
+}
+.product{
+    margin-left: 10%;
+}
+.ml{
+    margin-right: 10%;
+}
+
+.link-category, .link-pod-category{
+    text-decoration: none;
+    color: black;
+    transition: 500ms;
+    border-bottom: 2px solid white;
+}
+.link-pod-category{
+    margin-left: 15px;
+}
+.link-category:hover, .link-pod-category:hover{
+    border-bottom: 2px solid black;
+    color: black;
+}
+.menuCaption{
+    text-decoration: none;
+    color: black;
+    display: block;
+    position:fixed;
+    bottom: 120px;
+    right: 3%;
+    text-align: center;
+    border-radius: 50%;
+    border: 5px solid black;
+    padding: 10px;
+    transition: 1000ms;
+}
+.menuCaption:hover{
+    box-shadow: 0px 0px 20px rgb(0, 0, 0);
 }
 
 .popup-wrapper{
@@ -90,7 +150,7 @@ footer{
 .about * {
     margin-bottom: 10px;
 }
-.about h1, h2{
+h1, h2{
     text-align: center;
     margin-bottom: 20px;
 }
@@ -112,8 +172,23 @@ footer{
     justify-content: center;
     align-items: center;
     height: 70vh;
+    width: 100%;
 }
 
-.clear_cart{
-    margin-top: 10px;
+.cart-order{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
+.ord{
+    margin: auto;
+    border:0;
+}
+.clear_cart{
+    margin: 10px 0;
+}
+
+.menu-categorie{
+    width: 20%
+}
+

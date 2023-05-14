@@ -13,6 +13,7 @@
             <input type="hidden" name="product-id">
             <input type="hidden" name="product-name">
             <input type="hidden" name="product-price">
+            <input type="hidden" name="product-quantity">
             <input type="text" name="fio" class="form-control" placeholder="Ваше имя">
             <input type="phone" name="phone" class="form-control" placeholder="Ваш телефон">
             <input type="email"name="email" class="form-control" placeholder="Ваша почта"> 

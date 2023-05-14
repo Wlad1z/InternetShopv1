@@ -6,8 +6,8 @@ spl_autoload_register(function($class){
 
 $PDO = PdoConnect::getInstance();
 $sql = "
-        INSERT INTO `orders`
-        SET `fio` = :fio, `phone` = :phone, `email` = :email, `comment` = :comment,`date` =:date, `product_id` =:id, `quantity` =:quantity, `name` =:name, `price` =:price
+        INSERT INTO `products`
+        SET `category_id` = :category_id, `name` = :name_product, `price` = :price_product, `small_description` = :small_description, `big_description` = :big_description
       ";
 
       $set = $PDO->PDO->prepare($sql);

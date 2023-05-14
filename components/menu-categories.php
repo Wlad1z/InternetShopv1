@@ -1,21 +1,29 @@
-<div class="catalog">
-    <? foreach ($categories as $category):?>
-        <a href="categories-page.php?pageCat=<?=intId($category['id'])?>"> <?= $category['name']?></a><br>
-        <? if (isset($category['children']))
-        foreach ($category['children'] as $child):?>
-            --<a href="categories-page.php?page=<?=intId($child['id'])?>"> <?= $child['name']?></a><br>
+<div class="menu-categorie">
+    <h5>Категории</h5>
+    <div >
+        <? foreach ($categories as $category):?>
+            <a class="link-category" href="categories-page.php?pageCat=<?=intId($category['id'])?>"> <?= $category['name']?></a><br>
+            <? if (isset($category['children']))
+            foreach ($category['children'] as $child):?>
+                <a class="link-pod-category" href="categories-page.php?page=<?=intId($child['id'])?>"> <?= $child['name']?></a><br>
+            <?endforeach?>
         <?endforeach?>
-    <?endforeach?>
-    <div class="menuCaption">Корзина</div>
-    <a href="/cart.php" title="Перейти в корзину">В корзине</a>
-    <span id="cartCntItems">
-        <?php
-            if ($cartCntItems > 0){
-                echo $cartCntItems;
-            }
-            else{
-            ?>Пусто<?php
-            }
-        ?>
-    </span>          
+        <a class="menuCaption" class="link-category" href="/cart.php" >
+            
+                <h5>Заказ</h5> 
+                
+                <span id="cartCntItems">
+                    <?php
+                        if ($cartCntItems > 0){
+                            echo $cartCntItems;
+                        }
+                        else{
+                        ?>Пусто<?php
+                        }
+                    ?>
+                </span>
+             
+        </a>
+              
+    </div>
 </div>

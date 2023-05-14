@@ -1,8 +1,14 @@
 <?php
+$header = "О нас";
 include 'components/header.php';
+
 ?>
+
+<div class="header">
+    <img src="static/img/logo.jpg" alt="">
+    <h2><?php echo $header?></h2>
+</div>
 <div class="about">
-    <h1>О нас</h1>
     <div class="logo"></div>
     <h2>Копейки</h2>
     <p>

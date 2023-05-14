@@ -5,6 +5,8 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH'])
 && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
     $requestData = $_POST;
 
+    $requestData['date'] = date("d-m-Y H:i:s");
+
     $errors = array();
 
     if(!$requestData['id'])

@@ -40,6 +40,10 @@ class PdoConnect {
         
         return self::$_instance;
     }
+
+    public function prepare($sql) {
+        return $this->PDO->prepare($sql);
+    }
     private function __clone(){}
     private function __wakeup(){}
 }

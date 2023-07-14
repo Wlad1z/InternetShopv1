@@ -1,9 +1,11 @@
 <?php
     $header = "Добавление товара";
     include 'components/header.php';
-    
+    if ($_SESSION['user']['role'] != 'admin'){
+        header('Location: index.php');
+    }
 ?>
-    <div>
+    <div class="text-center">
         <h1>Добавить</h1>
         <a href="add-products-page.php?add=product" class="btn btn-success mt-1 ">Товар</a>
         <a href="add-products-page.php?add=category" id="add_categories" class="btn btn-success mt-1 ">Категория</a>

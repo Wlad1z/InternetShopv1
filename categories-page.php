@@ -53,19 +53,39 @@
             if ($product['category_id']==$_GET['page']) {
                 $empty= false;
                 ?>
-                <div class="card mb-3 product" data-id="<?=$product['id']?>" data-name="<?=$product['name']?>" data-price="<?=$product['price']?>">
-                    <img src="static/img/<?=$product['image']?>" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title"><?=$product['name']?></h5>
-                        <p class="card-text"><?=number_format($product['price'], 0, ' ', ' ')?> руб.</p>
-                        <p class="card-text"><small class="text-body-secondary"><?=$product['description']?></small></p>
-                        <div class="product-buttons">
-                            <button class="btn btn-success order">Купить</button>
-                            <a href="cart.php?addtocart=<?=$product['id']?>" class="btn btn-success addCart" id="addCart<?=$product['id']?>">В заказ</a>
-                            <a href="product-page.php?product=<?=intId($product['id'])?>" class="btn btn-success">Подробнее</a>
+                    <div class="card" data-id="<?=$product['id']?>" data-name="<?=$product['name']?>" data-price="<?=$product['price']?>" data-summa="<?=$product['price']?>">
+                        <a href="product-page.php?product=<?=intId($product['id'])?>"><img src="static/img/<?=$product['image']?>" class="card-img-top card-img" alt="..."></a>
+                        <div class="card-body">
+                        <a class="link-category" href="product-page.php?product=<?=intId($product['id'])?>"><h5 class="card-title"><?=$product['name']?></h5></a>
+                            <p class="card-text"><?=number_format($product['price'], 0, ' ', ' ')?> руб.</p>
+                            <p class="card-text"><small class="text-body-secondary"><?=$product['small_description']?></small></p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="product-buttons product-buttons-bottom">
+                                <button class="btn btn-success order">Купить</button>
+                                <div class="count_product" id="count<?=$product['id']?>">
+                                <?php
+                                    $count = 0;
+                                    foreach ($_SESSION['cart'] as $car):
+                                        if ($car['id'] == $product['id']){
+                                            $count+=1;
+                                        }
+                                    endforeach;
+                                    if ($count == 0){ ?>
+                                        <a href="#" onclick="return false" class="btn btn-success addCart" data-id="<?=$product['id']?>">В заказ</a>
+                                    <?php 
+                                    } else {
+                                        ?>
+                                        <button href="#" id="delCart<?=$product['id']?>" class="btn btn-success delCart" data-id="<?=$product['id']?>">-</button>
+                                        <h5 id="inCart<?=$product['id']?>"><span><?=$count?></h5>
+                                        <button href="#" id="addCart<?=$product['id']?>" onclick="return false" class="btn btn-success addCart" data-id="<?=$product['id']?>">+</button>
+                                    <?php 
+                                    }
+                                    ?>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
                 <?php 
             }
         endforeach;

@@ -1,4 +1,6 @@
+<?php
     
+?>
 
     </div>
 
@@ -14,9 +16,27 @@
             <input type="hidden" name="product-name">
             <input type="hidden" name="product-price">
             <input type="hidden" name="product-quantity">
-            <input type="text" name="fio" class="form-control" placeholder="Ваше имя">
-            <input type="phone" name="phone" class="form-control" placeholder="Ваш телефон">
-            <input type="email"name="email" class="form-control" placeholder="Ваша почта"> 
+            <input type="hidden" name="summa">
+            <?php
+                if (!empty($_SESSION['user'])){
+                    ?>
+                        <input type="hidden" name="fio" class="form-control" value="<?=$_SESSION['user']['fio']?>">
+                        <h5><?=$_SESSION['user']['fio']?></h5>
+                        <input type="hidden" name="phone" class="form-control" value="<?=$_SESSION['user']['phone']?>">
+                        <h5>Номер телефона: <?=$_SESSION['user']['phone']?></h5>
+                        <input type="hidden" name="email" class="form-control" value="<?=$_SESSION['user']['email']?>">
+                        <h5>Почта: <?=$_SESSION['user']['email']?></h5>
+                    <?php
+                } else{
+                    ?>
+                        <input type="text" name="fio" class="form-control" placeholder="Ваше имя">
+                        <input type="phone" name="phone" class="form-control" placeholder="Ваш телефон">
+                        <input type="email"name="email" class="form-control" placeholder="Ваша почта"> 
+                    <?php
+                }
+                
+            ?>
+            
             <textarea name="comment" class="form-control" placeholder="Комментарий"></textarea>
             <button class="js_send btn btn-success">Отправить</button>
         </div>
@@ -25,6 +45,9 @@
     <script src="https://kit.fontawesome.com/417822ee3c.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
+    
+    <script src="static/script/slick.min.js"></script>
+
     <script src="static/script/main.js"></script>
 
     

@@ -18,8 +18,7 @@
                 if ($delete == true) 
                     {break;};
                 unset ($_SESSION['cart'][$key]);
-                $delete = true;
-                    
+                $delete = true;    
             }
         endforeach;
         sort($_SESSION['cart']);
@@ -49,12 +48,17 @@
                     <div>
                         
                         <div class="cart-order">
-                            <h1><?= $count.'. '.$product['name']?></span></h1>
-                            <h1><a href="#" onclick="return false" class="btn btn-success delCart" data-id="<?=$product['id']?>">-</a></h1>
-                            <h1><span class="count<?=$product['id']?>"><?=$value?></h1>
-                            <h1><a href="#" onclick="return false" class="btn btn-success addCart" data-id="<?=$product['id']?>">+</a></h1>
-                            
-                            <h2><span id="count<?=$product['id']?>"><?= number_format(($price = ($product['price']*$value)), 0, ' ', ' ')?></span>руб;</h2>
+                            <div class="order-info blok-1">
+                                <h1><?= $count.'. '.$product['name']?></h1>
+                            </div>
+                            <div class="order-info blok-2">
+                                <h1><button class="btn btn-success delCart" data-id="<?=$product['id']?>">-</button></h1>
+                                <h1><?=$value?></h1>
+                                <h1><button  class="btn btn-success addCart" data-id="<?=$product['id']?>">+</button></h1>
+                            </div>
+                            <div class="order-info blok-3">
+                                <h2><span id="count<?=$product['id']?>"><?= number_format(($price = ($product['price']*$value)), 0, ' ', ' ')?></span>руб;</h2>
+                            </div>   
                         </div>
                         
                     </div>
@@ -68,6 +72,7 @@
         echo "<h1>Пусто</h1>";
     }
     if (!empty($_SESSION['cart'])){
+        $summa = $sum;
         $sum = number_format($sum, 0, ' ', ' ');
         echo "<h1>Итого <span id='sum'> $sum</span> руб.</h1>";
     }
@@ -79,31 +84,38 @@
 
 
 
-<div class="card ord" data-id="<?php
+<div class="card order-buttons" data-id="<?php
     foreach ($unis as $key => $value):
         foreach ($products as $product):
             if ($product['id']==$key)
-                echo $product['id'].";";
+                echo $product['id'].'-';
         endforeach;
     endforeach;
 ?>" data-name="<?php
     foreach ($unis as $key => $value):
         foreach ($products as $product):
             if ($product['id']==$key)
-                echo $product['name'].";";
+                echo $product['name'].'-';
         endforeach;
     endforeach;
-?>" data-price="<?= $sum
+?>" data-price="<?php
+    foreach ($unis as $key => $value):
+        foreach ($products as $product):
+            if ($product['id']==$key)
+                echo $value*$product['price'].";";
+        endforeach;
+    endforeach;
 ?>" data-quantity="<?php 
     foreach ($unis as $key => $value):
         foreach ($products as $product):
             if ($product['id']==$key)
-                echo $value.";";
+                echo $value.';';
         endforeach;
 endforeach;
+?>" data-summa="<?=$summa
 ?>">
-    <button class="btn btn-success order ">Заказать</button>
-    <a href="index.php?clear_cart=true" class="btn btn-success clear_cart">Очистить корзину</a>
+    <button class="btn btn-success order-button order">Заказать</button>
+    <a href="index.php?clear_cart=true" class="btn btn-success clear_cart order-button">Очистить корзину</a>
 </div>
     
 <?php

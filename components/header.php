@@ -1,14 +1,8 @@
 <?php 
-    session_start();
-
-    if (!isset($_SESSION['cart'])){
-        $_SESSION['cart'] = array();
-        $_SESSION['sum'] = 0;
-    };
- 
-    include 'models/categories.php';
+    include 'session/session_start.php';
+    include 'pdo-connect/categories.php';
     include 'functions/intId.php';
-    include 'models/products.php';
+    include 'pdo-connect/products.php';
     $cartCntItems = count($_SESSION['cart']);
 ?>
 
@@ -33,16 +27,49 @@
             <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                <a class="nav-link" href="/about.php">О нас</a>
+                    <a class="nav-link" href="/about.php">О нас</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/">Главная</a>
+                    <a class="nav-link" aria-current="page" href="/">Главная</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="/contacts.php">Контакты</a>
+                    <a class="nav-link" href="/contacts.php">Контакты</a>
                 </li>
             </ul>
             </div>
+            <?php
+                if (!empty($_SESSION['user'])){
+            ?>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                        <?=$_SESSION['user']['login']?>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
+                        <?php 
+                            if ($_SESSION['user']['role'] == 'admin'){
+                            ?>
+                                <li><a class="dropdown-item" href="orders-page.php">Страница заказов</a></li>
+                            <?php
+                            }
+                            if ($_SESSION['user']['role'] == 'admin'){
+                            ?>
+                                <li><a class="dropdown-item" href="add-products-page.php">Добавить товар/категорию</a></li>
+                            <?php
+                            }
+                            ?>
+                        <li><a class="dropdown-item" href="#">Профиль</a></li>
+                        <li><a class="dropdown-item" href="index.php?log_out=true">Выйти</a></li>
+                    </ul>
+                </div>
+            <?php
+                } else {
+                    if (!$login){
+                        ?> 
+                            <a href="login.php" class="btn btn-success">Войти</a>
+                        <?php
+                    }
+                }
+            ?>
         </div>
     </nav>
 <div class="container">
